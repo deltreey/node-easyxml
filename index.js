@@ -131,7 +131,7 @@ EasyXml.prototype.filterNull = function(child) {
  * @returns {Boolean}
  */
 EasyXml.prototype.isAttribute = function(key, child) {
-    return this.config.allowAttributes && key[0] === this.config.attributePrefix && !Array.isArray(child);
+    return this.config.allowAttributes && (!this.config.attributePrefix || key[0] === this.config.attributePrefix) && !Array.isArray(child);
 };
 
 /**
