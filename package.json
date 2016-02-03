@@ -9,8 +9,8 @@
     "url": "https://github.com/tlhunter/node-easyxml"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha",
-    "coverage": "istanbul cover node_modules/mocha/bin/_mocha"
+    "test": "mocha",
+    "coverage": "istanbul cover mocha"
   },
   "contributors": [
     {
