@@ -180,7 +180,12 @@ EasyXml.prototype.parseChildElement = function(parentXmlNode, parentObjectNode) 
                     if (key === this.config.attributePrefix) {
                         parentXmlNode.text = child;
                     } else {
+                    	if (!this.config.attributePrefix) {
+                    		parentXmlNode.set(key, child);
+                    	}
+                    	else {
                         parentXmlNode.set(key.substring(1), child);
+                    	}
                     }
                 } else {
                     throw new Error(key + "contained non_string_attribute");
