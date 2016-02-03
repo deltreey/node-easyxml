@@ -130,8 +130,8 @@ EasyXml.prototype.filterNull = function(child) {
  * @param {String} key
  * @returns {Boolean}
  */
-EasyXml.prototype.isAttribute = function(key) {
-    return this.config.allowAttributes && key[0] === this.config.attributePrefix;
+EasyXml.prototype.isAttribute = function(key, child) {
+    return this.config.allowAttributes && key[0] === this.config.attributePrefix && !Array.isArray(child);
 };
 
 /**
@@ -157,7 +157,7 @@ EasyXml.prototype.parseChildElement = function(parentXmlNode, parentObjectNode) 
                 key = inflect.singularize(this.config.rootArray);
             }
 
-            if (!this.isAttribute(key)) {
+            if (!this.isAttribute(key, child)) {
                 el = subElement(parentXmlNode, key);
             }
 
@@ -175,7 +175,7 @@ EasyXml.prototype.parseChildElement = function(parentXmlNode, parentObjectNode) 
                         }
                     }
                 }
-            } else if (this.isAttribute(key)) {
+            } else if (this.isAttribute(key, child)) {
                 if (typeof child === 'string' || typeof child === 'number') {
                     if (key === this.config.attributePrefix) {
                         parentXmlNode.text = child;
